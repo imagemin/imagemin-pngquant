@@ -28,10 +28,9 @@
     "png"
   ],
   "dependencies": {
+    "exec-buffer": "^0.1.1",
     "image-type": "^0.1.1",
-    "pngquant-bin": "^0.1.7",
-    "rimraf": "^2.2.6",
-    "tempfile": "^0.1.3"
+    "pngquant-bin": "^0.1.7"
   },
   "devDependencies": {
     "image-min": "^0.4.2",

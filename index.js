@@ -1,11 +1,8 @@
 'use strict';
 
-var execFile = require('child_process').execFile;
-var fs = require('fs');
+var ExecBuffer = require('exec-buffer');
 var imageType = require('image-type');
 var pngquant = require('pngquant-bin').path;
-var tempfile = require('tempfile');
-var rm = require('rimraf');
 
 /**
  * pngquant image-min plugin
@@ -22,37 +19,17 @@ module.exports = function (opts) {
             return cb();
         }
 
-        var src = tempfile('.png');
-        var dest = tempfile('.png');
+        var exec = new ExecBuffer();
 
-        fs.writeFile(src, file.contents, function (err) {
-            if (err) {
-                return cb(err);
-            }
-
-            execFile(pngquant, ['-o', dest, src], function (err) {
+        exec
+            .use(pngquant, ['-o', exec.dest(), exec.src()])
+            .run(file.contents, function (err, buf) {
                 if (err) {
                     return cb(err);
                 }
 
-                fs.readFile(dest, function (err, buf) {
-                    rm(src, function (err) {
-                        if (err) {
-                            return cb(err);
-                        }
-
-                        rm(dest, function (err) {
-                            if (err) {
-                                return cb(err);
-                            }
-
-                            file.contents = buf;
-
-                            cb();
-                        });
-                    });
-                });
+                file.contents = buf;
+                cb();
             });
-        });
     };
 };
