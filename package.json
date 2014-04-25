@@ -30,7 +30,7 @@
   "dependencies": {
     "exec-buffer": "^0.1.1",
     "image-type": "^0.1.1",
-    "pngquant-bin": "^0.1.7"
+    "pngquant-bin": "^0.2.0"
   },
   "devDependencies": {
     "image-min": "^0.4.2",
