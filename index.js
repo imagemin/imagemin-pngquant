@@ -14,6 +14,13 @@ var pngquant = require('pngquant-bin').path;
 module.exports = function (opts) {
     opts = opts || {};
 
+	var params = [];
+
+	if (!!opts.force || !!opts.f) params.push('--force');
+	if (!!opts.nofs) params.push('--nofs');
+	if (opts.speed) params.push('--speed', opts.speed);
+	if (opts.quality) params.push('--quality', opts.quality);
+
     return function (file, imagemin, cb) {
         if (imageType(file.contents) !== 'png') {
             return cb();
@@ -22,7 +29,7 @@ module.exports = function (opts) {
         var exec = new ExecBuffer();
 
         exec
-            .use(pngquant, ['-o', exec.dest(), exec.src()])
+            .use(pngquant, params.concat('-o', exec.dest(), exec.src()))
             .run(file.contents, function (err, buf) {
                 if (err) {
                     return cb(err);
