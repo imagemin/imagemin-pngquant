@@ -13,7 +13,7 @@ describe('pngquant()', function () {
 
         imagemin
             .src(path.join(__dirname, 'fixtures/test.png'))
-            .use(pngquant())
+            .use(pngquant({ quality: '65-80', speed: 4 }))
             .optimize(function (err, file) {
                 assert(file.contents.length < fs.statSync(imagemin.src()).size);
                 assert(file.contents.length > 0);

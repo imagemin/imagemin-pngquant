@@ -19,10 +19,23 @@ module.exports = function (opts) {
             return cb();
         }
 
+        var args = [];
         var exec = new ExecBuffer();
 
+        if (opts.nofs) {
+            args.push('--nofs');
+        }
+
+        if (opts.quality) {
+            args.push('--quality', opts.quality);
+        }
+
+        if (opts.speed) {
+            args.push('--speed', opts.speed);
+        }
+
         exec
-            .use(pngquant, ['-o', exec.dest(), exec.src()])
+            .use(pngquant, args.concat(['-f', '-o', exec.dest(), exec.src()]))
             .run(file.contents, function (err, buf) {
                 if (err) {
                     return cb(err);
