@@ -3,7 +3,7 @@
 
 var assert = require('assert');
 var fs = require('fs');
-var Imagemin = require('image-min');
+var Imagemin = require('imagemin');
 var pngquant = require('../');
 var path = require('path');
 

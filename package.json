@@ -33,7 +33,7 @@
     "pngquant-bin": "^0.3.0"
   },
   "devDependencies": {
-    "image-min": "^0.4.5",
+    "imagemin": "^0.4.7",
     "mocha": "^1.18.2"
   }
 }
