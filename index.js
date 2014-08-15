@@ -22,6 +22,10 @@ module.exports = function (opts) {
         var args = [];
         var exec = new ExecBuffer();
 
+        if (opts.verbose) {
+            args.push('--verbose');
+        }
+
         if (opts.nofs) {
             args.push('--nofs');
         }
