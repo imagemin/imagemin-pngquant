@@ -24,6 +24,13 @@ imagemin.optimize();
 
 ## Options
 
+### verbose
+
+Type: `Boolean`  
+Default: `false`
+
+Print verbose status messages
+
 ### nofs
 
 Type: `Boolean`  
