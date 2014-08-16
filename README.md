@@ -4,7 +4,7 @@
 
 ## Install
 
-```bash
+```sh
 $ npm install --save imagemin-pngquant
 ```
 
@@ -23,13 +23,6 @@ imagemin.optimize();
 ```
 
 ## Options
-
-### verbose
-
-Type: `Boolean`  
-Default: `false`
-
-Print verbose status messages
 
 ### nofs
 
@@ -56,6 +49,13 @@ Default: `3`
 
 Speed/quality trade-off from `1` (brute-force) to `10` (fastest). Speed `10` has 
 5% lower quality, but is 8 times faster than the default.
+
+### verbose
+
+Type: `Boolean`  
+Default: `false`
+
+Print verbose status messages.
 
 ## License
 

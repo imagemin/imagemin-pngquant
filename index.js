@@ -16,15 +16,12 @@ module.exports = function (opts) {
 
     return function (file, imagemin, cb) {
         if (imageType(file.contents) !== 'png') {
-            return cb();
+            cb();
+            return;
         }
 
         var args = [];
         var exec = new ExecBuffer();
-
-        if (opts.verbose) {
-            args.push('--verbose');
-        }
 
         if (opts.nofs) {
             args.push('--nofs');
@@ -38,11 +35,16 @@ module.exports = function (opts) {
             args.push('--speed', opts.speed);
         }
 
+        if (opts.verbose) {
+            args.push('--verbose');
+        }
+
         exec
             .use(pngquant, args.concat(['-f', '-o', exec.dest(), exec.src()]))
             .run(file.contents, function (err, buf) {
                 if (err) {
-                    return cb(err);
+                    cb(err);
+                    return;
                 }
 
                 file.contents = buf;
