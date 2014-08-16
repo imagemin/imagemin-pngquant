@@ -1,23 +1,25 @@
-/*global describe, it */
 'use strict';
 
-var assert = require('assert');
 var fs = require('fs');
 var Imagemin = require('imagemin');
 var pngquant = require('../');
 var path = require('path');
+var test = require('ava');
 
-describe('pngquant()', function () {
-    it('should optimize a PNG', function (cb) {
-        var imagemin = new Imagemin();
+test('optimize a PNG', function (t) {
+    t.plan(4);
 
-        imagemin
-            .src(path.join(__dirname, 'fixtures/test.png'))
-            .use(pngquant({ quality: '65-80', speed: 4 }))
-            .optimize(function (err, file) {
-                assert(file.contents.length < fs.statSync(imagemin.src()).size);
-                assert(file.contents.length > 0);
-                cb();
-            });
+    var imagemin = new Imagemin()
+        .src(path.join(__dirname, 'fixtures/test.png'))
+        .use(pngquant({ quality: '65-80', speed: 4 }));
+
+    imagemin.optimize(function (err, file) {
+        t.assert(!err);
+
+        fs.stat(imagemin.src(), function (err, stats) {
+            t.assert(!err);
+            t.assert(file.contents.length < stats.size);
+            t.assert(file.contents.length > 0);
+        });
     });
 });

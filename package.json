@@ -13,7 +13,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha --reporter list"
+    "test": "node test/test.js"
   },
   "files": [
     "index.js"
@@ -33,7 +33,7 @@
     "pngquant-bin": "^0.3.0"
   },
   "devDependencies": {
-    "imagemin": "^0.4.7",
-    "mocha": "^1.18.2"
+    "ava": "0.0.3",
+    "imagemin": "^0.4.7"
   }
 }
