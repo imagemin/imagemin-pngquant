@@ -1,6 +1,6 @@
 {
   "name": "imagemin-pngquant",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "pngquant image-min plugin",
   "license": "MIT",
   "repository": "kevva/imagemin-pngquant",
