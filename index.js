@@ -1,7 +1,7 @@
 'use strict';
 
 var ExecBuffer = require('exec-buffer');
-var imageType = require('image-type');
+var isPng = require('is-png');
 var pngquant = require('pngquant-bin').path;
 
 /**
@@ -15,7 +15,7 @@ module.exports = function (opts) {
 	opts = opts || {};
 
 	return function (file, imagemin, cb) {
-		if (imageType(file.contents) !== 'png') {
+		if (!isPng(file.contents)) {
 			cb();
 			return;
 		}
