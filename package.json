@@ -29,11 +29,11 @@
   ],
   "dependencies": {
     "exec-buffer": "^0.1.1",
-    "image-type": "^0.1.1",
-    "pngquant-bin": "^0.3.0"
+    "is-png": "^1.0.0",
+    "pngquant-bin": "^0.3.5"
   },
   "devDependencies": {
-    "ava": "0.0.3",
-    "imagemin": "^0.4.7"
+    "ava": "0.0.4",
+    "imagemin": "^1.0.0"
   }
 }
