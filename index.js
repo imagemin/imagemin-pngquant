@@ -12,43 +12,43 @@ var pngquant = require('pngquant-bin').path;
  */
 
 module.exports = function (opts) {
-    opts = opts || {};
+	opts = opts || {};
 
-    return function (file, imagemin, cb) {
-        if (imageType(file.contents) !== 'png') {
-            cb();
-            return;
-        }
+	return function (file, imagemin, cb) {
+		if (imageType(file.contents) !== 'png') {
+			cb();
+			return;
+		}
 
-        var args = [];
-        var exec = new ExecBuffer();
+		var args = [];
+		var exec = new ExecBuffer();
 
-        if (opts.nofs) {
-            args.push('--nofs');
-        }
+		if (opts.nofs) {
+			args.push('--nofs');
+		}
 
-        if (opts.quality) {
-            args.push('--quality', opts.quality);
-        }
+		if (opts.quality) {
+			args.push('--quality', opts.quality);
+		}
 
-        if (opts.speed) {
-            args.push('--speed', opts.speed);
-        }
+		if (opts.speed) {
+			args.push('--speed', opts.speed);
+		}
 
-        if (opts.verbose) {
-            args.push('--verbose');
-        }
+		if (opts.verbose) {
+			args.push('--verbose');
+		}
 
-        exec
-            .use(pngquant, args.concat(['-f', '-o', exec.dest(), exec.src()]))
-            .run(file.contents, function (err, buf) {
-                if (err) {
-                    cb(err);
-                    return;
-                }
+		exec
+			.use(pngquant, args.concat(['-f', '-o', exec.dest(), exec.src()]))
+			.run(file.contents, function (err, buf) {
+				if (err) {
+					cb(err);
+					return;
+				}
 
-                file.contents = buf;
-                cb();
-            });
-    };
+				file.contents = buf;
+				cb();
+			});
+	};
 };
