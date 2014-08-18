@@ -1,12 +1,14 @@
-# imagemin-pngquant [![Build Status](https://travis-ci.org/kevva/imagemin-pngquant.svg?branch=master)](https://travis-ci.org/kevva/imagemin-pngquant)
+# imagemin-pngquant [![Build Status](https://travis-ci.org/imagemin/imagemin-pngquant.svg?branch=master)](https://travis-ci.org/imagemin/imagemin-pngquant)
 
 > pngquant image-min plugin
+
 
 ## Install
 
 ```sh
 $ npm install --save imagemin-pngquant
 ```
+
 
 ## Usage
 
@@ -15,12 +17,13 @@ var Imagemin = require('image-min');
 var pngquant = require('imagemin-pngquant');
 
 var imagemin = new Imagemin()
-    .src('foo.png')
-    .dest('foo-optimized.png')
-    .use(pngquant({ quality: '65-80', speed: 4 }));
+	.src('foo.png')
+	.dest('foo-optimized.png')
+	.use(pngquant({ quality: '65-80', speed: 4 }));
 
 imagemin.optimize();
 ```
+
 
 ## Options
 
@@ -57,6 +60,7 @@ Default: `false`
 
 Print verbose status messages.
 
+
 ## License
 
-[MIT License](http://en.wikipedia.org/wiki/MIT_License) © [Kevin Mårtensson](https://github.com/kevva)
+MIT © [imagemin](https://github.com/imagemin)
