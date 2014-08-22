@@ -20,7 +20,7 @@ module.exports = function (opts) {
 			return;
 		}
 
-		var args = [];
+		var args = ['--skip-if-larger'];
 		var exec = new ExecBuffer();
 
 		if (opts.nofs) {
