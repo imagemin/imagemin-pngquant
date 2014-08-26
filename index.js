@@ -23,8 +23,16 @@ module.exports = function (opts) {
 		var args = ['--skip-if-larger'];
 		var exec = new ExecBuffer();
 
+		if (opts.floyd) {
+			args.push('--floyd', opts.floyd);
+		}
+
 		if (opts.nofs) {
 			args.push('--nofs');
+		}
+
+		if (opts.posterize) {
+			args.push('--posterize', opts.posterize);
 		}
 
 		if (opts.quality) {

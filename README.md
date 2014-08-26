@@ -27,12 +27,27 @@ imagemin.optimize();
 
 ## Options
 
+### floyd
+
+Type: `Number`  
+Default: `0.5`
+
+Controls level of dithering (0 = none, 1 = full).
+
 ### nofs
 
 Type: `Boolean`  
 Default: `false`
 
 Disable Floyd-Steinberg dithering.
+
+### posterize
+
+Type: `Number`  
+Default: `undefined`
+
+Reduce precision of the palette by number of bits. Use when the image will be 
+displayed on low-depth screens (e.g. 16-bit displays or compressed textures).
 
 ### quality
 
