@@ -28,9 +28,9 @@
     "png"
   ],
   "dependencies": {
-    "exec-buffer": "^0.1.1",
+    "exec-buffer": "^1.0.0",
     "is-png": "^1.0.0",
-    "pngquant-bin": "^0.3.5"
+    "pngquant-bin": "^1.0.1"
   },
   "devDependencies": {
     "ava": "0.0.4",
