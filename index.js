@@ -20,8 +20,12 @@ module.exports = function (opts) {
 			return;
 		}
 
-		var args = ['--skip-if-larger'];
+		var args = [];
 		var exec = new ExecBuffer();
+
+		if (opts.skipIfLarger !== false){
+			args.push('--skip-if-larger');
+		}
 
 		if (opts.floyd) {
 			args.push('--floyd', opts.floyd);
