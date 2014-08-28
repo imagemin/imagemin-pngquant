@@ -27,6 +27,13 @@ imagemin.optimize();
 
 ## Options
 
+### skipIfLarger
+
+Type: `Boolean`  
+Default: `true`
+
+Will skip compression if the destination image is larger than the source image.
+
 ### floyd
 
 Type: `Number`  
