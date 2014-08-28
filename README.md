@@ -29,7 +29,7 @@ imagemin.optimize();
 
 ### skipIfLarger
 
-Type: `Boolean`
+Type: `Boolean`  
 Default: `true`
 
 Will skip compression if the destination image is larger than the source image.
