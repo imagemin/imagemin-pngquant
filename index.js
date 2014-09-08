@@ -3,6 +3,7 @@
 var isPng = require('is-png');
 var pngquant = require('pngquant-bin').path;
 var spawn = require('child_process').spawn;
+var through = require('through2');
 
 /**
  * pngquant imagemin plugin
@@ -14,7 +15,7 @@ var spawn = require('child_process').spawn;
 module.exports = function (opts) {
 	opts = opts || {};
 
-	return function (file, imagemin, cb) {
+	return through.obj(function (file, enc, cb) {
 		if (!isPng(file.contents)) {
 			cb();
 			return;
@@ -68,9 +69,9 @@ module.exports = function (opts) {
 
 		cp.on('close', function () {
 			file.contents = Buffer.concat(ret, len);
-			cb();
+			cb(null, file);
 		});
 
 		cp.stdin.end(file.contents);
-	};
+	});
 };
