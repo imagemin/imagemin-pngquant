@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var Imagemin = require('imagemin');
+var isPng = require('is-png');
 var pngquant = require('../');
 var path = require('path');
 var test = require('ava');
@@ -19,7 +20,7 @@ test('optimize a PNG', function (t) {
 		fs.stat(imagemin.src(), function (err, stats) {
 			t.assert(!err);
 			t.assert(file.contents.length < stats.size);
-			t.assert(file.contents.length > 0);
+			t.assert(isPng(file.contents));
 		});
 	});
 });

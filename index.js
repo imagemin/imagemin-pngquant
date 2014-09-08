@@ -1,8 +1,8 @@
 'use strict';
 
-var ExecBuffer = require('exec-buffer');
 var isPng = require('is-png');
 var pngquant = require('pngquant-bin').path;
+var spawn = require('child_process').spawn;
 
 /**
  * pngquant image-min plugin
@@ -20,8 +20,9 @@ module.exports = function (opts) {
 			return;
 		}
 
-		var args = ['--skip-if-larger'];
-		var exec = new ExecBuffer();
+		var args = ['--skip-if-larger', '-'];
+		var ret = [];
+		var len = 0;
 
 		if (opts.floyd) {
 			args.push('--floyd', opts.floyd);
@@ -47,16 +48,29 @@ module.exports = function (opts) {
 			args.push('--verbose');
 		}
 
-		exec
-			.use(pngquant, args.concat(['-f', '-o', exec.dest(), exec.src()]))
-			.run(file.contents, function (err, buf) {
-				if (err) {
-					cb(err);
-					return;
-				}
+		var cp = spawn(pngquant, args);
 
-				file.contents = buf;
-				cb();
-			});
+		cp.on('error', function (err) {
+			cb(err);
+			return;
+		});
+
+		cp.stderr.setEncoding('utf8');
+		cp.stderr.on('data', function (data) {
+			cb(data);
+			return;
+		});
+
+		cp.stdout.on('data', function (data) {
+			ret.push(data);
+			len += data.length;
+		});
+
+		cp.on('close', function () {
+			file.contents = Buffer.concat(ret, len);
+			cb();
+		});
+
+		cp.stdin.end(file.contents);
 	};
 };

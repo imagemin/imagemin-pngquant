@@ -28,7 +28,6 @@
     "png"
   ],
   "dependencies": {
-    "exec-buffer": "^1.0.0",
     "is-png": "^1.0.0",
     "pngquant-bin": "^1.0.1"
   },
