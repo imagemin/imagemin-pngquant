@@ -5,7 +5,7 @@ var pngquant = require('pngquant-bin').path;
 var spawn = require('child_process').spawn;
 
 /**
- * pngquant image-min plugin
+ * pngquant imagemin plugin
  *
  * @param {Object} opts
  * @api public

@@ -1,6 +1,6 @@
-# imagemin-pngquant [![Build Status](https://travis-ci.org/imagemin/imagemin-pngquant.svg?branch=master)](https://travis-ci.org/imagemin/imagemin-pngquant) [![Build status](https://ci.appveyor.com/api/projects/status/w60auppnbiwgu9gj)](https://ci.appveyor.com/project/kevva/imagemin-pngquant)
+# imagemin-pngquant [![Build Status](http://img.shields.io/travis/imagemin/imagemin-pngquant.svg?style=flat)](https://travis-ci.org/imagemin/imagemin-pngquant) [![Build status](https://ci.appveyor.com/api/projects/status/w60auppnbiwgu9gj)](https://ci.appveyor.com/project/kevva/imagemin-pngquant)
 
-> pngquant image-min plugin
+> pngquant imagemin plugin
 
 
 ## Install
@@ -13,7 +13,7 @@ $ npm install --save imagemin-pngquant
 ## Usage
 
 ```js
-var Imagemin = require('image-min');
+var Imagemin = require('imagemin');
 var pngquant = require('imagemin-pngquant');
 
 var imagemin = new Imagemin()
