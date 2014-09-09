@@ -68,7 +68,7 @@ module.exports = function (opts) {
 
 		cp.stderr.setEncoding('utf8');
 		cp.stderr.on('data', function (data) {
-			cb(data);
+			cb(new Error(data));
 			return;
 		});
 

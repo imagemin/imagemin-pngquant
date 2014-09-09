@@ -23,7 +23,6 @@ test('optimize a PNG', function (t) {
 			t.assert(isPng(data.contents));
 		});
 
-		stream.write(file);
-		stream.end();
+		stream.end(file);
 	});
 });
