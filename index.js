@@ -62,6 +62,11 @@ module.exports = function (opts) {
 		var cp = spawn(pngquant, args);
 
 		cp.on('error', function (err) {
+			if (err.code === 98) {
+				cb(null, file);
+				return;
+			}
+
 			cb(err);
 			return;
 		});
