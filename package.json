@@ -34,6 +34,6 @@
   },
   "devDependencies": {
     "ava": "^0.0.4",
-    "vinyl": "^0.4.3"
+    "vinyl-file": "^1.1.0"
   }
 }
