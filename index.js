@@ -31,7 +31,7 @@ module.exports = function (opts) {
 			return;
 		}
 
-		var args = ['--skip-if-larger', '-'];
+		var args = ['-'];
 		var ret = [];
 		var len = 0;
 
@@ -78,7 +78,10 @@ module.exports = function (opts) {
 		});
 
 		cp.on('close', function () {
-			file.contents = Buffer.concat(ret, len);
+			if (len < file.contents.length) {
+				file.contents = Buffer.concat(ret, len);
+			}
+
 			cb(null, file);
 		});
 
