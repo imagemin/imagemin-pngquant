@@ -25,6 +25,26 @@ test('optimize a PNG', function (t) {
 	});
 });
 
+test('optimize a PNG using ctor', function (t) {
+	t.plan(3);
+
+	var Pngquant = pngquant.ctor();
+
+	read(path.join(__dirname, 'fixtures/test.png'), function (err, file) {
+		t.assert(!err);
+
+		var stream = new Pngquant();
+		var size = file.contents.length;
+
+		stream.on('data', function (data) {
+			t.assert(data.contents.length < size);
+			t.assert(isPng(data.contents));
+		});
+
+		stream.end(file);
+	});
+});
+
 test('skip optimizing a non-PNG file', function (t) {
 	t.plan(2);
 
