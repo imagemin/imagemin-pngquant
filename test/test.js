@@ -11,7 +11,7 @@ test('optimize a PNG', function (t) {
 	t.plan(3);
 
 	read(path.join(__dirname, 'fixtures/test.png'), function (err, file) {
-		t.assert(!err);
+		t.assert(!err, err);
 
 		var stream = pngquant();
 		var size = file.contents.length;
@@ -31,7 +31,7 @@ test('optimize a PNG using ctor', function (t) {
 	var Pngquant = pngquant.ctor();
 
 	read(path.join(__dirname, 'fixtures/test.png'), function (err, file) {
-		t.assert(!err);
+		t.assert(!err, err);
 
 		var stream = new Pngquant();
 		var size = file.contents.length;
@@ -49,7 +49,7 @@ test('skip optimizing a non-PNG file', function (t) {
 	t.plan(2);
 
 	read(__filename, function (err, file) {
-		t.assert(!err);
+		t.assert(!err, err);
 
 		var stream = pngquant();
 		var buf = file.contents;
@@ -66,7 +66,7 @@ test('skip optimizing an already optimized PNG', function (t) {
 	t.plan(2);
 
 	read(path.join(__dirname, 'fixtures/test-smallest.png'), function (err, file) {
-		t.assert(!err);
+		t.assert(!err, err);
 
 		var stream = pngquant();
 		var buf = file.contents;
