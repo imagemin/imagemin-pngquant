@@ -38,7 +38,7 @@ var pngquant = require('imagemin-pngquant');
 
 gulp.task('default', function () {
 	return gulp.src('images/*.png')
-		.pipe(pngquant({ quality: '65-80', speed: 4 }))
+		.pipe(pngquant({ quality: '65-80', speed: 4 })())
 		.pipe(gulp.dest('build/images'));
 });
 ```
