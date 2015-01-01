@@ -1,4 +1,4 @@
-# imagemin-pngquant [![Build Status](http://img.shields.io/travis/imagemin/imagemin-pngquant.svg?style=flat)](https://travis-ci.org/imagemin/imagemin-pngquant) [![Build status](https://ci.appveyor.com/api/projects/status/w60auppnbiwgu9gj)](https://ci.appveyor.com/project/kevva/imagemin-pngquant)
+# imagemin-pngquant [![Build Status](http://img.shields.io/travis/imagemin/imagemin-pngquant.svg?style=flat)](https://travis-ci.org/imagemin/imagemin-pngquant) [![Build status](https://ci.appveyor.com/api/projects/status/w60auppnbiwgu9gj?svg=true)](https://ci.appveyor.com/project/kevva/imagemin-pngquant)
 
 > pngquant imagemin plugin
 
