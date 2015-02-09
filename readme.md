@@ -19,7 +19,7 @@ var pngquant = require('imagemin-pngquant');
 var imagemin = new Imagemin()
 	.src('images/*.png')
 	.dest('build/images')
-	.use(pngquant({ quality: '65-80', speed: 4 }));
+	.use(pngquant({quality: '65-80', speed: 4}));
 
 imagemin.run(function (err, files) {
 	if (err) {
@@ -38,7 +38,7 @@ var pngquant = require('imagemin-pngquant');
 
 gulp.task('default', function () {
 	return gulp.src('images/*.png')
-		.pipe(pngquant({ quality: '65-80', speed: 4 })())
+		.pipe(pngquant({quality: '65-80', speed: 4})())
 		.pipe(gulp.dest('build/images'));
 });
 ```
