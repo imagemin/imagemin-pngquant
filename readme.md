@@ -5,7 +5,7 @@
 
 ## Install
 
-```sh
+```
 $ npm install --save imagemin-pngquant
 ```
 
@@ -14,64 +14,57 @@ $ npm install --save imagemin-pngquant
 
 ```js
 var Imagemin = require('imagemin');
-var pngquant = require('imagemin-pngquant');
+var imageminPngquant = require('imagemin-pngquant');
 
-var imagemin = new Imagemin()
+new Imagemin()
 	.src('images/*.png')
 	.dest('build/images')
-	.use(pngquant({quality: '65-80', speed: 4}));
-
-imagemin.run(function (err, files) {
-	if (err) {
-		throw err;
-	}
-
-	console.log('Files optimized successfully!'); 
-});
+	.use(imageminPngquant({quality: '65-80', speed: 4}))
+	.run();
 ```
 
 You can also use this plugin with [gulp](http://gulpjs.com):
 
 ```js
 var gulp = require('gulp');
-var pngquant = require('imagemin-pngquant');
+var imageminPngquant = require('imagemin-pngquant');
 
 gulp.task('default', function () {
 	return gulp.src('images/*.png')
-		.pipe(pngquant({quality: '65-80', speed: 4})())
+		.pipe(imageminPngquant({quality: '65-80', speed: 4})())
 		.pipe(gulp.dest('build/images'));
 });
 ```
 
 
-## Options
+## API
 
-### floyd
+### imageminPngquant(options)
 
-Type: `Number`  
+#### options.floyd
+
+Type: `number`  
 Default: `0.5`
 
 Controls level of dithering (0 = none, 1 = full).
 
-### nofs
+#### options.nofs
 
-Type: `Boolean`  
+Type: `boolean`  
 Default: `false`
 
 Disable Floyd-Steinberg dithering.
 
-### posterize
+#### options.posterize
 
-Type: `Number`  
-Default: `undefined`
+Type: `number`
 
 Reduce precision of the palette by number of bits. Use when the image will be 
 displayed on low-depth screens (e.g. 16-bit displays or compressed textures).
 
-### quality
+#### options.quality
 
-Type: `String`  
-Default: `undefined`
+Type: `string`
 
 Instructs pngquant to use the least amount of colors required to meet or exceed 
 the max quality. If conversion results in quality below the min quality the 
@@ -79,17 +72,17 @@ image won't be saved.
 
 Min and max are numbers in range 0 (worst) to 100 (perfect), similar to JPEG.
 
-### speed
+#### options.speed
 
-Type: `Number`  
+Type: `number`  
 Default: `3`
 
 Speed/quality trade-off from `1` (brute-force) to `10` (fastest). Speed `10` has 
 5% lower quality, but is 8 times faster than the default.
 
-### verbose
+#### options.verbose
 
-Type: `Boolean`  
+Type: `boolean`  
 Default: `false`
 
 Print verbose status messages.

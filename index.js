@@ -1,8 +1,8 @@
 'use strict';
 
+var spawn = require('child_process').spawn;
 var isPng = require('is-png');
 var pngquant = require('pngquant-bin').path;
-var spawn = require('child_process').spawn;
 var through = require('through2');
 
 module.exports = function (opts) {
@@ -54,11 +54,6 @@ module.exports = function (opts) {
 
 		var cp = spawn(pngquant, args);
 
-		cp.on('error', function (err) {
-			cb(err);
-			return;
-		});
-
 		cp.stderr.setEncoding('utf8');
 		cp.stderr.on('data', function (data) {
 			cb(new Error(data));
@@ -70,6 +65,7 @@ module.exports = function (opts) {
 			len += data.length;
 		});
 
+		cp.on('error', cb);
 		cp.on('close', function () {
 			if (len < file.contents.length) {
 				file.contents = Buffer.concat(ret, len);
@@ -81,4 +77,3 @@ module.exports = function (opts) {
 		cp.stdin.end(file.contents);
 	});
 };
-

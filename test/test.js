@@ -1,11 +1,11 @@
 'use strict';
 
+var path = require('path');
 var bufferEqual = require('buffer-equal');
 var isPng = require('is-png');
-var pngquant = require('../');
-var path = require('path');
 var read = require('vinyl-file').read;
 var test = require('ava');
+var imageminPngquant = require('../');
 
 test('optimize a PNG', function (t) {
 	t.plan(3);
@@ -13,11 +13,11 @@ test('optimize a PNG', function (t) {
 	read(path.join(__dirname, 'fixtures/test.png'), function (err, file) {
 		t.assert(!err, err);
 
-		var stream = pngquant()();
+		var stream = imageminPngquant()();
 		var size = file.contents.length;
 
 		stream.on('data', function (data) {
-			t.assert(data.contents.length < size);
+			t.assert(data.contents.length < size, data.contents.length);
 			t.assert(isPng(data.contents));
 		});
 
@@ -31,7 +31,7 @@ test('skip optimizing a non-PNG file', function (t) {
 	read(__filename, function (err, file) {
 		t.assert(!err, err);
 
-		var stream = pngquant()();
+		var stream = imageminPngquant()();
 		var buf = file.contents;
 
 		stream.on('data', function (data) {
@@ -48,7 +48,7 @@ test('skip optimizing an already optimized PNG', function (t) {
 	read(path.join(__dirname, 'fixtures/test-smallest.png'), function (err, file) {
 		t.assert(!err, err);
 
-		var stream = pngquant()();
+		var stream = imageminPngquant()();
 		var buf = file.contents;
 
 		stream.on('data', function (data) {
