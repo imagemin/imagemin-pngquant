@@ -2,7 +2,7 @@
 
 var spawn = require('child_process').spawn;
 var isPng = require('is-png');
-var pngquant = require('pngquant-bin').path;
+var pngquant = require('pngquant-bin');
 var through = require('through2');
 
 module.exports = function (opts) {

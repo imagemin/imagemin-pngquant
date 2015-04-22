@@ -31,7 +31,7 @@
   ],
   "dependencies": {
     "is-png": "^1.0.0",
-    "pngquant-bin": "^2.0.0",
+    "pngquant-bin": "^3.0.0",
     "through2": "^0.6.1"
   },
   "devDependencies": {
