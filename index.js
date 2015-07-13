@@ -29,7 +29,7 @@ module.exports = function (opts) {
 		var len = 0;
 
 		if (opts.floyd) {
-			args.push('--floyd', opts.floyd);
+			args.push('--floyd=' + opts.floyd);
 		}
 
 		if (opts.nofs) {
