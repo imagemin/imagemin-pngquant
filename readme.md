@@ -43,7 +43,7 @@ gulp.task('default', function () {
 
 #### options.floyd
 
-Type: `number`  
+Type: `number`, `boolean`  
 Default: `0.5`
 
 Controls level of dithering (0 = none, 1 = full).

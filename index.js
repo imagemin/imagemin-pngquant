@@ -28,8 +28,12 @@ module.exports = function (opts) {
 		var ret = [];
 		var len = 0;
 
-		if (opts.floyd) {
+		if (opts.floyd && typeof opts.floyd === 'number') {
 			args.push('--floyd=' + opts.floyd);
+		}
+
+		if (opts.floyd && typeof opts.floyd === 'boolean') {
+			args.push('--floyd');
 		}
 
 		if (opts.nofs) {
