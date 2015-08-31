@@ -1,5 +1,4 @@
 'use strict';
-
 var path = require('path');
 var bufferEquals = require('buffer-equals');
 var isPng = require('is-png');
@@ -34,7 +33,7 @@ test('skip optimizing a non-PNG file', function (t) {
 		var stream = imageminPngquant()();
 		var buf = file.contents;
 
-		stream.on('data', function (data) {
+		stream.on('data', function () {
 			t.assert(bufferEquals(file.contents, buf));
 		});
 
@@ -51,7 +50,7 @@ test('skip optimizing an already optimized PNG', function (t) {
 		var stream = imageminPngquant()();
 		var buf = file.contents;
 
-		stream.on('data', function (data) {
+		stream.on('data', function () {
 			t.assert(bufferEquals(file.contents, buf));
 		});
 

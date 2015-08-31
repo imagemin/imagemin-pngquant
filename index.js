@@ -1,5 +1,4 @@
 'use strict';
-
 var spawn = require('child_process').spawn;
 var isPng = require('is-png');
 var pngquant = require('pngquant-bin');
