@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path');
-var bufferEqual = require('buffer-equal');
+var bufferEquals = require('buffer-equals');
 var isPng = require('is-png');
 var read = require('vinyl-file').read;
 var test = require('ava');
@@ -35,7 +35,7 @@ test('skip optimizing a non-PNG file', function (t) {
 		var buf = file.contents;
 
 		stream.on('data', function (data) {
-			t.assert(bufferEqual(file.contents, buf));
+			t.assert(bufferEquals(file.contents, buf));
 		});
 
 		stream.end(file);
@@ -52,7 +52,7 @@ test('skip optimizing an already optimized PNG', function (t) {
 		var buf = file.contents;
 
 		stream.on('data', function (data) {
-			t.assert(bufferEqual(file.contents, buf));
+			t.assert(bufferEquals(file.contents, buf));
 		});
 
 		stream.end(file);
