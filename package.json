@@ -13,7 +13,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "xo && node test/test.js"
+    "test": "xo && ava test/test.js"
   },
   "files": [
     "index.js"
@@ -35,7 +35,7 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "ava": "^0.0.4",
+    "ava": "*",
     "buffer-equals": "^1.0.3",
     "vinyl-file": "^1.1.0",
     "xo": "*"

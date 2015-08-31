@@ -10,14 +10,14 @@ test('optimize a PNG', function (t) {
 	t.plan(3);
 
 	read(path.join(__dirname, 'fixtures/test.png'), function (err, file) {
-		t.assert(!err, err);
+		t.error(err);
 
 		var stream = imageminPngquant()();
 		var size = file.contents.length;
 
 		stream.on('data', function (data) {
-			t.assert(data.contents.length < size, data.contents.length);
-			t.assert(isPng(data.contents));
+			t.true(data.contents.length < size, data.contents.length);
+			t.true(isPng(data.contents));
 		});
 
 		stream.end(file);
@@ -28,13 +28,13 @@ test('skip optimizing a non-PNG file', function (t) {
 	t.plan(2);
 
 	read(__filename, function (err, file) {
-		t.assert(!err, err);
+		t.error(err);
 
 		var stream = imageminPngquant()();
 		var buf = file.contents;
 
 		stream.on('data', function () {
-			t.assert(bufferEquals(file.contents, buf));
+			t.true(bufferEquals(file.contents, buf));
 		});
 
 		stream.end(file);
@@ -45,13 +45,13 @@ test('skip optimizing an already optimized PNG', function (t) {
 	t.plan(2);
 
 	read(path.join(__dirname, 'fixtures/test-smallest.png'), function (err, file) {
-		t.assert(!err, err);
+		t.error(err);
 
 		var stream = imageminPngquant()();
 		var buf = file.contents;
 
 		stream.on('data', function () {
-			t.assert(bufferEquals(file.contents, buf));
+			t.true(bufferEquals(file.contents, buf));
 		});
 
 		stream.end(file);
