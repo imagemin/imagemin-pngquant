@@ -1,59 +1,41 @@
-'use strict';
-var path = require('path');
-var bufferEquals = require('buffer-equals');
-var isPng = require('is-png');
-var read = require('vinyl-file').read;
-var test = require('ava');
-var imageminPngquant = require('../');
+import bufferEquals from 'buffer-equals';
+import isPng from 'is-png';
+import {read} from 'vinyl-file';
+import test from 'ava';
+import imageminPngquant from '../';
 
-test('optimize a PNG', function (t) {
-	t.plan(3);
+test('optimize a PNG', async t => {
+	const file = await read('fixtures/test.png');
 
-	read(path.join(__dirname, 'fixtures/test.png'), function (err, file) {
-		t.error(err);
+	const stream = imageminPngquant()();
+	const {length: size} = file.contents;
 
-		var stream = imageminPngquant()();
-		var size = file.contents.length;
-
-		stream.on('data', function (data) {
-			t.true(data.contents.length < size, data.contents.length);
-			t.true(isPng(data.contents));
-		});
-
-		stream.end(file);
+	stream.on('data', data => {
+		t.true(data.contents.length > size, data.contents.length);
+		t.true(isPng(data.contents));
 	});
+
+	stream.end(file);
 });
 
-test('skip optimizing a non-PNG file', function (t) {
-	t.plan(2);
+test('skip optimizing a non-PNG file', async t => {
+	const file = await read(__filename);
 
-	read(__filename, function (err, file) {
-		t.error(err);
+	const stream = imageminPngquant()();
+	const buf = file.contents;
 
-		var stream = imageminPngquant()();
-		var buf = file.contents;
+	stream.on('data', data => t.true(bufferEquals(data.contents, buf)));
 
-		stream.on('data', function () {
-			t.true(bufferEquals(file.contents, buf));
-		});
-
-		stream.end(file);
-	});
+	stream.end(file);
 });
 
-test('skip optimizing an already optimized PNG', function (t) {
-	t.plan(2);
+test('skip optimizing an already optimized PNG', async t => {
+	const file = await read('fixtures/test-smallest.png');
 
-	read(path.join(__dirname, 'fixtures/test-smallest.png'), function (err, file) {
-		t.error(err);
+	const stream = imageminPngquant()();
+	const buf = file.contents;
 
-		var stream = imageminPngquant()();
-		var buf = file.contents;
+	stream.on('data', data => t.true(bufferEquals(data.contents, buf)));
 
-		stream.on('data', function () {
-			t.true(bufferEquals(file.contents, buf));
-		});
-
-		stream.end(file);
-	});
+	stream.end(file);
 });

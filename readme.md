@@ -13,10 +13,10 @@ $ npm install --save imagemin-pngquant
 ## Usage
 
 ```js
-var Imagemin = require('imagemin');
-var imageminPngquant = require('imagemin-pngquant');
+const Imagemin = require('imagemin');
+const imageminPngquant = require('imagemin-pngquant');
 
-new Imagemin()
+const Imagemin()
 	.src('images/*.png')
 	.dest('build/images')
 	.use(imageminPngquant({quality: '65-80', speed: 4}))
@@ -26,10 +26,10 @@ new Imagemin()
 You can also use this plugin with [gulp](http://gulpjs.com):
 
 ```js
-var gulp = require('gulp');
-var imageminPngquant = require('imagemin-pngquant');
+const gulp = require('gulp');
+const imageminPngquant = require('imagemin-pngquant');
 
-gulp.task('default', function () {
+gulp.task('default', () => {
 	return gulp.src('images/*.png')
 		.pipe(imageminPngquant({quality: '65-80', speed: 4})())
 		.pipe(gulp.dest('build/images'));
