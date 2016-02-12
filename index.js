@@ -25,6 +25,7 @@ module.exports = function (opts) {
 
 		var args = ['-'];
 		var ret = [];
+		var err = '';
 		var len = 0;
 
 		if (opts.floyd && typeof opts.floyd === 'number') {
@@ -73,7 +74,14 @@ module.exports = function (opts) {
 			return;
 		});
 
-		cp.on('close', function () {
+		cp.on('close', function (code) {
+			if (code) {
+				err = new Error(err);
+				err.fileName = file.path;
+				cb(err);
+				return;
+			}
+			
 			if (len < file.contents.length) {
 				file.contents = Buffer.concat(ret, len);
 			}
