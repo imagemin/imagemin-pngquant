@@ -59,10 +59,7 @@ module.exports = function (opts) {
 
 		cp.stderr.setEncoding('utf8');
 		cp.stderr.on('data', function (data) {
-			var err = new Error(data);
-			err.fileName = file.path;
-			cb(err);
-			return;
+			err += data;
 		});
 
 		cp.stdout.on('data', function (data) {
