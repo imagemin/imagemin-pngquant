@@ -81,7 +81,7 @@ module.exports = function (opts) {
 				cb(err);
 				return;
 			}
-			
+
 			if (len < file.contents.length) {
 				file.contents = Buffer.concat(ret, len);
 			}
