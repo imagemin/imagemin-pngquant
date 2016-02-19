@@ -68,7 +68,7 @@ test.cb('emit an error when optimizing a corrupt PNG', t => {
 		const stream = imageminPngquant()();
 
 		stream.on('error', err => {
-			t.regex(err.message, /cannot decode image from stdin/);
+			t.regex(err.message, process.platform === 'win32' ? /PNG file corrupted/ : /cannot decode image from stdin/);
 			t.end();
 		});
 
