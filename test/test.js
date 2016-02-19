@@ -4,38 +4,74 @@ import {read} from 'vinyl-file';
 import test from 'ava';
 import imageminPngquant from '../';
 
-test('optimize a PNG', async t => {
-	const file = await read('fixtures/test.png');
+test.cb('optimize a PNG', t => {
+	read('fixtures/test.png').then(file => {
+		const stream = imageminPngquant()();
+		const {length: originalSize} = file.contents;
 
-	const stream = imageminPngquant()();
-	const {length: size} = file.contents;
+		stream.on('data', data => {
+			t.true(data.contents.length < originalSize);
+			t.true(isPng(data.contents));
+			t.end();
+		});
 
-	stream.on('data', data => {
-		t.true(data.contents.length > size, data.contents.length);
-		t.true(isPng(data.contents));
+		stream.end(file);
 	});
-
-	stream.end(file);
 });
 
-test('skip optimizing a non-PNG file', async t => {
-	const file = await read(__filename);
+test.cb('support pngquant options', t => {
+	read('fixtures/test.png').then(file => {
+		const stream = imageminPngquant({
+			speed: 10,
+			quality: 100
+		})();
 
-	const stream = imageminPngquant()();
-	const buf = file.contents;
+		stream.on('data', data => {
+			t.true(data.contents.length > 30000);
+			t.end();
+		});
 
-	stream.on('data', data => t.true(bufferEquals(data.contents, buf)));
-
-	stream.end(file);
+		stream.end(file);
+	});
 });
 
-test('skip optimizing an already optimized PNG', async t => {
-	const file = await read('fixtures/test-smallest.png');
+test.cb('skip optimizing a non-PNG file', t => {
+	read(__filename).then(file => {
+		const stream = imageminPngquant()();
+		const buf = file.contents;
 
-	const stream = imageminPngquant()();
-	const buf = file.contents;
+		stream.on('data', data => {
+			t.true(bufferEquals(data.contents, buf));
+			t.end();
+		});
 
-	stream.on('data', data => t.true(bufferEquals(data.contents, buf)));
+		stream.end(file);
+	});
+});
 
-	stream.end(file);
+test.cb('skip optimizing an already optimized PNG', t => {
+	read('fixtures/test-smallest.png').then(file => {
+		const stream = imageminPngquant()();
+		const buf = file.contents;
+
+		stream.on('data', data => {
+			t.true(bufferEquals(data.contents, buf));
+			t.end();
+		});
+
+		stream.end(file);
+	});
+});
+
+test.cb('emit an error when optimizing a corrupt PNG', t => {
+	read('fixtures/test-corrupt.png').then(file => {
+		const stream = imageminPngquant()();
+
+		stream.on('error', err => {
+			t.regex(err.message, /cannot decode image from stdin/);
+			t.end();
+		});
+
+		stream.end(file);
+	});
 });
