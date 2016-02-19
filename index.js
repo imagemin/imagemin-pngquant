@@ -75,7 +75,7 @@ module.exports = function (opts) {
 		});
 
 		cp.on('close', function (code) {
-			if (code) {
+			if (code && code !== 99) {
 				err = new Error(err);
 				err.fileName = file.path;
 				cb(err);
