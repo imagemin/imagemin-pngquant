@@ -16,7 +16,7 @@ $ npm install --save imagemin-pngquant
 const Imagemin = require('imagemin');
 const imageminPngquant = require('imagemin-pngquant');
 
-const Imagemin()
+Imagemin()
 	.src('images/*.png')
 	.dest('build/images')
 	.use(imageminPngquant({quality: '65-80', speed: 4}))
