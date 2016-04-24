@@ -24,7 +24,7 @@ imagemin('images/*.png', 'build/images', {use: [imageminPngquant()]}).then(() =>
 
 ## API
 
-### imageminPngquant(options)(buffer)
+### imageminPngquant([options])(buffer)
 
 Returns a promise for a buffer.
 
@@ -32,14 +32,14 @@ Returns a promise for a buffer.
 
 ##### floyd
 
-Type: `number`, `boolean`
+Type: `number`, `boolean`<br>
 Default: `0.5`
 
 Controls level of dithering (0 = none, 1 = full).
 
 ##### nofs
 
-Type: `boolean`
+Type: `boolean`<br>
 Default: `false`
 
 Disable Floyd-Steinberg dithering.
@@ -63,7 +63,7 @@ Min and max are numbers in range 0 (worst) to 100 (perfect), similar to JPEG.
 
 ##### speed
 
-Type: `number`
+Type: `number`<br>
 Default: `3`
 
 Speed/quality trade-off from `1` (brute-force) to `10` (fastest). Speed `10` has
@@ -71,7 +71,7 @@ Speed/quality trade-off from `1` (brute-force) to `10` (fastest). Speed `10` has
 
 ##### verbose
 
-Type: `boolean`
+Type: `boolean`<br>
 Default: `false`
 
 Print verbose status messages.
