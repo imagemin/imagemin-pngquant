@@ -1,46 +1,39 @@
 import fs from 'fs';
+import path from 'path';
 import isPng from 'is-png';
 import pify from 'pify';
 import test from 'ava';
-import imageminPngquant from '../';
+import m from '../';
 
 const fsP = pify(fs);
 
-test.cb('optimize a PNG', t => {
-	fsP.readFile('fixtures/test.png').then(buf => {
-		imageminPngquant()(buf).then(data => {
-			t.true(data.length < buf.length);
-			t.true(isPng(data));
-			t.end();
-		});
-	});
+test('optimize a PNG', async t => {
+	const buf = await fsP.readFile(path.join(__dirname, 'fixtures', 'test.png'));
+	const data = await m()(buf);
+
+	t.true(data.length < buf.length);
+	t.true(isPng(data));
 });
 
-test.cb('support pngquant options', t => {
-	fsP.readFile('fixtures/test.png').then(buf => {
-		imageminPngquant({
-			speed: 10,
-			quality: 100
-		})(buf).then(data => {
-			t.true(data.length > 30000);
-			t.true(isPng(data));
-			t.end();
-		});
-	});
+test('support pngquant options', async t => {
+	const buf = await fsP.readFile(path.join(__dirname, 'fixtures', 'test.png'));
+	const data = await m({
+		speed: 10,
+		quality: 100
+	})(buf);
+
+	t.true(data.length > 30000);
+	t.true(isPng(data));
 });
 
-test.cb('skip optimizing a non-PNG file', t => {
-	fsP.readFile(__filename).then(buf => {
-		imageminPngquant()(buf).then(data => {
-			t.is(data.length, buf.length);
-			t.end();
-		});
-	});
+test('skip optimizing a non-PNG file', async t => {
+	const buf = await fsP.readFile(__filename);
+	const data = await m()(buf);
+
+	t.is(data.length, buf.length);
 });
 
-test.cb('throw on corrupt image', t => {
-	fsP.readFile('fixtures/test-corrupt.png').then(buf => {
-		t.throws(imageminPngquant()(buf), /PNG file corrupted/);
-		t.end();
-	});
+test('throw on corrupt image', async t => {
+	const buf = await fsP.readFile(path.join(__dirname, 'fixtures', 'test-corrupt.png'));
+	t.throws(m()(buf), /PNG file corrupted/);
 });
