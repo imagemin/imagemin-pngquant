@@ -16,7 +16,7 @@ $ npm install --save imagemin-pngquant
 const imagemin = require('imagemin');
 const imageminPngquant = require('imagemin-pngquant');
 
-imagemin('images/*.png', 'build/images', {use: [imageminPngquant()]}).then(() => {
+imagemin(['images/*.png'], 'build/images', {use: [imageminPngquant()]}).then(() => {
 	console.log('Images optimized');
 });
 ```
