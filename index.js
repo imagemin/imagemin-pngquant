@@ -52,14 +52,10 @@ module.exports = opts => buf => {
 		bin: pngquant,
 		args
 	}).catch(err => {
-		if (err.code !== 99)
-		{
-			err.message = err.stderr || err.message;
-			throw err;
+		if (err.code === 99) {
+			return buf;
 		}
-		else
-		{
-			return {buffer: buf};
-		}
+		err.message = err.stderr || err.message;
+		throw err;
 	});
 };
