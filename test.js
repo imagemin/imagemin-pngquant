@@ -37,3 +37,10 @@ test('throw on corrupt image', async t => {
 	const buf = await fsP.readFile(path.join(__dirname, 'fixture-corrupt.png'));
 	t.throws(m()(buf), /PNG file corrupted/);
 });
+
+test('skip optimizing a fully optimized PNG', async t => {
+	const buf = await fsP.readFile(path.join(__dirname, 'fixture-no-compress.png'));
+	const data = await m({quality: 100})(buf);
+	t.is(data.length, buf.length);
+	t.true(isPng(data));
+});
