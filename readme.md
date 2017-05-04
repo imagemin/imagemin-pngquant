@@ -76,6 +76,13 @@ Default: `false`
 
 Print verbose status messages.
 
+##### strip
+
+Type: `boolean`<br>
+Default: `false`
+
+Don't copy optional PNG chunks. Metadata is always removed on Mac (when using Cocoa reader).
+
 #### buffer
 
 Type: `buffer`
