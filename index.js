@@ -47,6 +47,10 @@ module.exports = opts => buf => {
 		args.push('--verbose');
 	}
 
+	if (opts.strip) {
+		args.push('--strip');
+	}
+
 	return execBuffer({
 		input: buf,
 		bin: pngquant,
