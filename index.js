@@ -55,6 +55,7 @@ module.exports = opts => buf => {
 		if (err.code === 99) {
 			return buf;
 		}
+
 		err.message = err.stderr || err.message;
 		throw err;
 	});

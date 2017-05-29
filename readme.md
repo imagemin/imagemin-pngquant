@@ -32,7 +32,7 @@ Returns a promise for a buffer.
 
 ##### floyd
 
-Type: `number`, `boolean`<br>
+Type: `number` `boolean`<br>
 Default: `0.5`
 
 Controls level of dithering (0 = none, 1 = full).
@@ -78,7 +78,7 @@ Print verbose status messages.
 
 #### buffer
 
-Type: `buffer`
+Type: `Buffer`
 
 Buffer to optimize.
 
