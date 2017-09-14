@@ -24,9 +24,9 @@ imagemin(['images/*.png'], 'build/images', {use: [imageminPngquant()]}).then(() 
 
 ## API
 
-### imageminPngquant([options])(buffer)
+### imageminPngquant([options])(input)
 
-Returns a promise for a buffer.
+Returns a `Promise` for a `Buffer`.
 
 #### options
 
@@ -76,11 +76,11 @@ Default: `false`
 
 Print verbose status messages.
 
-#### buffer
+#### input
 
-Type: `Buffer`
+Type: `Buffer` `Stream`
 
-Buffer to optimize.
+Buffer or stream to optimize.
 
 
 ## License

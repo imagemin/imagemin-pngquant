@@ -40,13 +40,14 @@
     "pngquant"
   ],
   "dependencies": {
-    "exec-buffer": "^3.0.0",
+    "execa": "^0.8.0",
     "is-png": "^1.0.0",
+    "is-stream": "^1.1.0",
     "pngquant-bin": "^3.0.0"
   },
   "devDependencies": {
     "ava": "*",
-    "pify": "^3.0.0",
+    "get-stream": "^3.0.0",
     "xo": "*"
   }
 }

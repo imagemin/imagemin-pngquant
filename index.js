@@ -1,23 +1,23 @@
 'use strict';
-const execBuffer = require('exec-buffer');
+const execa = require('execa');
 const isPng = require('is-png');
+const isStream = require('is-stream');
 const pngquant = require('pngquant-bin');
 
-module.exports = opts => buf => {
+module.exports = opts => input => {
 	opts = Object.assign({}, opts);
 
-	if (!Buffer.isBuffer(buf)) {
-		return Promise.reject(new TypeError('Expected a buffer'));
+	const isBuffer = Buffer.isBuffer(input);
+
+	if (!isBuffer && !isStream(input)) {
+		return Promise.reject(new TypeError(`Expected a Buffer or Stream, got ${typeof input}`));
 	}
 
-	if (!isPng(buf)) {
-		return Promise.resolve(buf);
+	if (isBuffer && !isPng(input)) {
+		return Promise.resolve(input);
 	}
 
-	const args = [
-		'--output', execBuffer.output,
-		execBuffer.input
-	];
+	const args = ['-'];
 
 	if (opts.floyd && typeof opts.floyd === 'number') {
 		args.push(`--floyd=${opts.floyd}`);
@@ -47,16 +47,24 @@ module.exports = opts => buf => {
 		args.push('--verbose');
 	}
 
-	return execBuffer({
-		input: buf,
-		bin: pngquant,
-		args
-	}).catch(err => {
-		if (err.code === 99) {
-			return buf;
-		}
-
-		err.message = err.stderr || err.message;
-		throw err;
+	const cp = execa(pngquant, args, {
+		encoding: null,
+		input
 	});
+
+	const promise = cp
+		.then(res => res.stdout)
+		.catch(err => {
+			if (err.code === 99) {
+				return input;
+			}
+
+			err.message = err.stderr || err.message;
+			throw err;
+		});
+
+	cp.stdout.then = promise.then.bind(promise);
+	cp.stdout.catch = promise.catch.bind(promise);
+
+	return cp.stdout;
 };
