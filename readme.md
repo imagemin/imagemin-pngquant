@@ -76,6 +76,13 @@ Default: `false`
 
 Print verbose status messages.
 
+##### strip
+
+Type: `boolean`<br>
+Default: `false`
+
+Remove optional metadata (dafault on Mac).
+
 #### input
 
 Type: `Buffer` `Stream`
