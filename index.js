@@ -47,7 +47,7 @@ module.exports = opts => input => {
 		args.push('--verbose');
 	}
 
-  if (opts.strip) {
+	if (opts.strip) {
 		args.push('--strip');
 	}
 
