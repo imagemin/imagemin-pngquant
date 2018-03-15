@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save imagemin-pngquant
+$ npm install imagemin-pngquant
 ```
 
 
@@ -85,4 +85,4 @@ Buffer or stream to optimize.
 
 ## License
 
-MIT © [imagemin](https://github.com/imagemin)
+MIT © [Imagemin](https://github.com/imagemin)
