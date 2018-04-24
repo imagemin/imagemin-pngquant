@@ -51,6 +51,7 @@ module.exports = (options = {}) => input => {
 
 	const cp = execa(pngquant, args, {
 		encoding: null,
+		maxBuffer: Infinity,
 		input
 	});
 
