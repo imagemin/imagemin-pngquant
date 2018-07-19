@@ -47,6 +47,10 @@ module.exports = opts => input => {
 		args.push('--verbose');
 	}
 
+	if (opts.strip) {
+		args.push('--strip');
+	}
+
 	const cp = execa(pngquant, args, {
 		encoding: null,
 		input
