@@ -27,7 +27,7 @@
 		"execa": "^0.10.0",
 		"is-png": "^1.0.0",
 		"is-stream": "^1.1.0",
-		"pngquant-bin": "^4.0.0"
+		"pngquant-bin": "^5.0.0"
 	},
 	"devDependencies": {
 		"ava": "*",
