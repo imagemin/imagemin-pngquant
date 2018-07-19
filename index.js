@@ -4,9 +4,7 @@ const isPng = require('is-png');
 const isStream = require('is-stream');
 const pngquant = require('pngquant-bin');
 
-module.exports = opts => input => {
-	opts = Object.assign({}, opts);
-
+module.exports = (options = {}) => input => {
 	const isBuffer = Buffer.isBuffer(input);
 
 	if (!isBuffer && !isStream(input)) {
@@ -19,35 +17,35 @@ module.exports = opts => input => {
 
 	const args = ['-'];
 
-	if (opts.floyd && typeof opts.floyd === 'number') {
-		args.push(`--floyd=${opts.floyd}`);
+	if (options.floyd && typeof options.floyd === 'number') {
+		args.push(`--floyd=${options.floyd}`);
 	}
 
-	if (opts.floyd && typeof opts.floyd === 'boolean') {
+	if (options.floyd && typeof options.floyd === 'boolean') {
 		args.push('--floyd');
 	}
 
-	if (opts.nofs) {
+	if (options.nofs) {
 		args.push('--nofs');
 	}
 
-	if (opts.posterize) {
-		args.push('--posterize', opts.posterize);
+	if (options.posterize) {
+		args.push('--posterize', options.posterize);
 	}
 
-	if (opts.quality) {
-		args.push('--quality', opts.quality);
+	if (options.quality) {
+		args.push('--quality', options.quality);
 	}
 
-	if (opts.speed) {
-		args.push('--speed', opts.speed);
+	if (options.speed) {
+		args.push('--speed', options.speed);
 	}
 
-	if (opts.verbose) {
+	if (options.verbose) {
 		args.push('--verbose');
 	}
 
-	if (opts.strip) {
+	if (options.strip) {
 		args.push('--strip');
 	}
 
@@ -57,14 +55,14 @@ module.exports = opts => input => {
 	});
 
 	const promise = cp
-		.then(res => res.stdout)
-		.catch(err => {
-			if (err.code === 99) {
+		.then(result => result.stdout)
+		.catch(error => {
+			if (error.code === 99) {
 				return input;
 			}
 
-			err.message = err.stderr || err.message;
-			throw err;
+			error.message = error.stderr || error.message;
+			throw error;
 		});
 
 	cp.stdout.then = promise.then.bind(promise);
