@@ -79,9 +79,9 @@ Print verbose status messages.
 ##### strip
 
 Type: `boolean`<br>
-Default: `false`
+Default: `false` (`true` on macOS)
 
-Remove optional metadata (dafault on Mac).
+Remove optional metadata.
 
 #### input
 
