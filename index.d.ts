@@ -44,11 +44,6 @@ export interface Options {
    * @default false (true on macOS)
    */
   strip?: boolean;
-
-  /**
-   * Buffer or stream to optimize.
-   */
-  input?: Buffer | NodeJS.ReadableStream;
 }
 
 /**
