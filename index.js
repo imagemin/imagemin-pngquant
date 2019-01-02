@@ -4,7 +4,7 @@ const isPng = require('is-png');
 const isStream = require('is-stream');
 const pngquant = require('pngquant-bin');
 
-module.exports = (options = {}) => input => {
+const imageminPngquant = (options = {}) => input => {
 	const isBuffer = Buffer.isBuffer(input);
 
 	if (!isBuffer && !isStream(input)) {
@@ -71,3 +71,6 @@ module.exports = (options = {}) => input => {
 
 	return cp.stdout;
 };
+
+module.exports = imageminPngquant;
+module.exports.default = imageminPngquant;
