@@ -29,8 +29,8 @@ module.exports = (options = {}) => input => {
 	}
 
 	if (typeof options.quality !== 'undefined') {
-		ow(options.quality, ow.number.inRange(0, 100));
-		args.push('--quality', options.quality);
+		ow(options.quality, ow.number.inRange(0, 1));
+		args.push('--quality', Math.round(options.quality * 100));
 	}
 
 	if (typeof options.dithering !== 'undefined') {

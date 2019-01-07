@@ -17,7 +17,7 @@ test('support pngquant options', async t => {
 	const buf = await fs.readFileSync(path.join(__dirname, 'fixture.png'));
 	const data = await m({
 		speed: 10,
-		quality: 100
+		quality: 1
 	})(buf);
 
 	t.true(data.length > 30000);
@@ -42,7 +42,7 @@ test('skip optimizing a non-PNG file', async t => {
 
 test('skip optimizing a fully optimized PNG', async t => {
 	const buf = await fs.readFileSync(path.join(__dirname, 'fixture-no-compress.png'));
-	const data = await m({quality: 100})(buf);
+	const data = await m({quality: 1})(buf);
 	t.is(data.length, buf.length);
 	t.true(isPng(data));
 });

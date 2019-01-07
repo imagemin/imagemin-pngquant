@@ -55,18 +55,20 @@ Remove optional metadata.
 
 ##### quality
 
-Type: `number`
+Type: `number`<br>
+Values: `0...1`
 
 Instructs pngquant to use the least amount of colors required to meet or exceed
 the max quality. If conversion results in quality below the min quality the
 image won't be saved.
 
-Min and max are numbers in range 0 (worst) to 100 (perfect), similar to JPEG.
+Min and max are numbers in range 0 (worst) to 1 (perfect), similar to JPEG.
 
 ##### dithering
 
 Type: `number` `boolean`<br>
-Default: `1` (full)
+Default: `1` (full)<br>
+Values: `0...1`
 
 Set the dithering level using a fractional number between 0 (none) and 1 (full).
 
