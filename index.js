@@ -17,16 +17,10 @@ module.exports = (options = {}) => input => {
 
 	const args = ['-'];
 
-	if (options.floyd && typeof options.floyd === 'number') {
-		args.push(`--floyd=${options.floyd}`);
-	}
-
-	if (options.floyd && typeof options.floyd === 'boolean') {
-		args.push('--floyd');
-	}
-
-	if (options.nofs) {
-		args.push('--nofs');
+	if (typeof options.dithering === 'number') {
+		args.push(`--floyd=${options.dithering}`);
+	} else if (options.dithering === false) {
+		args.push('--ordered');
 	}
 
 	if (options.posterize) {

@@ -30,19 +30,16 @@ Returns a `Promise` for a `Buffer`.
 
 #### options
 
-##### floyd
+Type: `Object`
+
+##### dithering
 
 Type: `number` `boolean`<br>
 Default: `0.5`
 
-Controls level of dithering (0 = none, 1 = full).
+Level of dithering (0 = none, 1 = full).
 
-##### nofs
-
-Type: `boolean`<br>
-Default: `false`
-
-Disable Floyd-Steinberg dithering.
+Pass in `false` to disable dithering.
 
 ##### posterize
 
