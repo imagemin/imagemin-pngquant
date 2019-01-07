@@ -3,6 +3,7 @@ const execa = require('execa');
 const isPng = require('is-png');
 const isStream = require('is-stream');
 const pngquant = require('pngquant-bin');
+const ow = require('ow');
 
 module.exports = (options = {}) => input => {
 	const isBuffer = Buffer.isBuffer(input);
@@ -17,30 +18,39 @@ module.exports = (options = {}) => input => {
 
 	const args = ['-'];
 
-	if (typeof options.dithering === 'number') {
-		args.push(`--floyd=${options.dithering}`);
-	} else if (options.dithering === false) {
-		args.push('--ordered');
-	}
-
-	if (options.posterize) {
-		args.push('--posterize', options.posterize);
-	}
-
-	if (options.quality) {
-		args.push('--quality', options.quality);
-	}
-
-	if (options.speed) {
+	if (typeof options.speed !== 'undefined') {
+		ow(options.speed, ow.number.integer.inRange(1, 11));
 		args.push('--speed', options.speed);
 	}
 
-	if (options.verbose) {
-		args.push('--verbose');
+	if (typeof options.strip !== 'undefined') {
+		ow(options.strip, ow.boolean);
+		args.push('--strip');
 	}
 
-	if (options.strip) {
-		args.push('--strip');
+	if (typeof options.quality !== 'undefined') {
+		ow(options.quality, ow.number.inRange(0, 100));
+		args.push('--quality', options.quality);
+	}
+
+	if (typeof options.dithering !== 'undefined') {
+		ow(options.dithering, ow.any(ow.number.inRange(0, 1), ow.boolean.false));
+
+		if (typeof options.dithering === 'number') {
+			args.push(`--floyd=${options.dithering}`);
+		} else if (options.dithering === false) {
+			args.push('--ordered');
+		}
+	}
+
+	if (typeof options.posterize !== 'undefined') {
+		ow(options.posterize, ow.number);
+		args.push('--posterize', options.posterize);
+	}
+
+	if (typeof options.verbose !== 'undefined') {
+		ow(options.verbose, ow.boolean);
+		args.push('--verbose');
 	}
 
 	const cp = execa(pngquant, args, {
