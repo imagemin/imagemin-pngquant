@@ -29,8 +29,9 @@ module.exports = (options = {}) => input => {
 	}
 
 	if (typeof options.quality !== 'undefined') {
-		ow(options.quality, ow.number.inRange(0, 1));
-		args.push('--quality', Math.round(options.quality * 100));
+		ow(options.quality, ow.array.length(2).ofType(ow.number.inRange(0, 1)));
+		const [min, max] = options.quality;
+		args.push('--quality', `${Math.round(min * 100)}-${Math.round(max * 100)}`);
 	}
 
 	if (typeof options.dithering !== 'undefined') {

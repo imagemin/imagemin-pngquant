@@ -55,8 +55,9 @@ Remove optional metadata.
 
 ##### quality
 
-Type: `number`<br>
-Values: `0...1`
+Type: `Array<min: number, max: number>`<br>
+Values: `Array<0...1, 0...1>`<br>
+Example: `[0.3, 0.5]`
 
 Instructs pngquant to use the least amount of colors required to meet or exceed
 the max quality. If conversion results in quality below the min quality the
