@@ -16,9 +16,15 @@ $ npm install imagemin-pngquant
 const imagemin = require('imagemin');
 const imageminPngquant = require('imagemin-pngquant');
 
-imagemin(['images/*.png'], 'build/images', {use: [imageminPngquant()]}).then(() => {
+(async () => {
+	await imagemin(['images/*.png'], 'build/images', {
+		plugins: [
+			imageminPngquant()
+		]
+	});
+
 	console.log('Images optimized');
-});
+})();
 ```
 
 
@@ -31,6 +37,31 @@ Returns a `Promise` for a `Buffer`.
 #### options
 
 Type: `Object`
+
+##### speed
+
+Type: `number`<br>
+Default: `3`<br>
+Values: `1` (brute-force) to `11` (fastest)
+
+Speed `10` has 5% lower quality, but is about 8 times faster than the default. Speed `11` disables dithering and lowers compression level.
+
+##### strip
+
+Type: `boolean`<br>
+Default: `false`
+
+Remove optional metadata.
+
+##### quality
+
+Type: `number`
+
+Instructs pngquant to use the least amount of colors required to meet or exceed
+the max quality. If conversion results in quality below the min quality the
+image won't be saved.
+
+Min and max are numbers in range 0 (worst) to 100 (perfect), similar to JPEG.
 
 ##### dithering
 
@@ -45,26 +76,7 @@ Pass in `false` to disable dithering.
 
 Type: `number`
 
-Reduce precision of the palette by number of bits. Use when the image will be
-displayed on low-depth screens (e.g. 16-bit displays or compressed textures).
-
-##### quality
-
-Type: `number`
-
-Instructs pngquant to use the least amount of colors required to meet or exceed
-the max quality. If conversion results in quality below the min quality the
-image won't be saved.
-
-Min and max are numbers in range 0 (worst) to 100 (perfect), similar to JPEG.
-
-##### speed
-
-Type: `number`<br>
-Default: `3`
-
-Speed/quality trade-off from `1` (brute-force) to `10` (fastest). Speed `10` has
-5% lower quality, but is 8 times faster than the default.
+Truncate number of least significant bits of color (per channel). Use this when image will be output on low-depth displays (e.g. 16-bit RGB). pngquant will make almost-opaque pixels fully opaque and will reduce amount of semi-transparent colors.
 
 ##### verbose
 
@@ -72,13 +84,6 @@ Type: `boolean`<br>
 Default: `false`
 
 Print verbose status messages.
-
-##### strip
-
-Type: `boolean`<br>
-Default: `false` (`true` on macOS)
-
-Remove optional metadata.
 
 #### input
 
