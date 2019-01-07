@@ -35,9 +35,9 @@ Type: `Object`
 ##### dithering
 
 Type: `number` `boolean`<br>
-Default: `0.5`
+Default: `1` (full)
 
-Level of dithering (0 = none, 1 = full).
+Set the dithering level using a fractional number between 0 (none) and 1 (full).
 
 Pass in `false` to disable dithering.
 
