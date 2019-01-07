@@ -50,7 +50,7 @@ displayed on low-depth screens (e.g. 16-bit displays or compressed textures).
 
 ##### quality
 
-Type: `string`
+Type: `number`
 
 Instructs pngquant to use the least amount of colors required to meet or exceed
 the max quality. If conversion results in quality below the min quality the
