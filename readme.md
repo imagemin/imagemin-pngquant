@@ -1,6 +1,6 @@
 # imagemin-pngquant [![Build Status](https://travis-ci.org/imagemin/imagemin-pngquant.svg?branch=master)](https://travis-ci.org/imagemin/imagemin-pngquant) [![Build status](https://ci.appveyor.com/api/projects/status/w60auppnbiwgu9gj?svg=true)](https://ci.appveyor.com/project/kevva/imagemin-pngquant)
 
-> pngquant imagemin plugin
+> [Imagemin](https://github.com/imagemin/imagemin) plugin for [`pngquant`](https://github.com/kornelski/pngquant)
 
 
 ## Install
@@ -16,9 +16,15 @@ $ npm install imagemin-pngquant
 const imagemin = require('imagemin');
 const imageminPngquant = require('imagemin-pngquant');
 
-imagemin(['images/*.png'], 'build/images', {use: [imageminPngquant()]}).then(() => {
+(async () => {
+	await imagemin(['images/*.png'], 'build/images', {
+		plugins: [
+			imageminPngquant()
+		]
+	});
+
 	console.log('Images optimized');
-});
+})();
 ```
 
 
@@ -30,44 +36,50 @@ Returns a `Promise` for a `Buffer`.
 
 #### options
 
-##### floyd
+Type: `Object`
 
-Type: `number` `boolean`<br>
-Default: `0.5`
+##### speed
 
-Controls level of dithering (0 = none, 1 = full).
+Type: `number`<br>
+Default: `3`<br>
+Values: `1` (brute-force) to `11` (fastest)
 
-##### nofs
+Speed `10` has 5% lower quality, but is about 8 times faster than the default. Speed `11` disables dithering and lowers compression level.
+
+##### strip
 
 Type: `boolean`<br>
 Default: `false`
 
-Disable Floyd-Steinberg dithering.
-
-##### posterize
-
-Type: `number`
-
-Reduce precision of the palette by number of bits. Use when the image will be
-displayed on low-depth screens (e.g. 16-bit displays or compressed textures).
+Remove optional metadata.
 
 ##### quality
 
-Type: `string`
+Type: `Array<min: number, max: number>`<br>
+Values: `Array<0...1, 0...1>`<br>
+Example: `[0.3, 0.5]`
 
 Instructs pngquant to use the least amount of colors required to meet or exceed
 the max quality. If conversion results in quality below the min quality the
 image won't be saved.
 
-Min and max are numbers in range 0 (worst) to 100 (perfect), similar to JPEG.
+Min and max are numbers in range 0 (worst) to 1 (perfect), similar to JPEG.
 
-##### speed
+##### dithering
 
-Type: `number`<br>
-Default: `3`
+Type: `number` `boolean`<br>
+Default: `1` (full)<br>
+Values: `0...1`
 
-Speed/quality trade-off from `1` (brute-force) to `10` (fastest). Speed `10` has
-5% lower quality, but is 8 times faster than the default.
+Set the dithering level using a fractional number between 0 (none) and 1 (full).
+
+Pass in `false` to disable dithering.
+
+##### posterize
+
+Type: `number`
+
+Truncate number of least significant bits of color (per channel). Use this when image will be output on low-depth displays (e.g. 16-bit RGB). pngquant will make almost-opaque pixels fully opaque and will reduce amount of semi-transparent colors.
 
 ##### verbose
 
@@ -75,13 +87,6 @@ Type: `boolean`<br>
 Default: `false`
 
 Print verbose status messages.
-
-##### strip
-
-Type: `boolean`<br>
-Default: `false` (`true` on macOS)
-
-Remove optional metadata.
 
 #### input
 

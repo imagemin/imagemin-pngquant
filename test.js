@@ -1,48 +1,44 @@
 import fs from 'fs';
 import path from 'path';
+import test from 'ava';
 import getStream from 'get-stream';
 import isPng from 'is-png';
-import test from 'ava';
-import m from '.';
+import imageminPngquant from '.';
 
 test('optimize a PNG', async t => {
-	const buf = await fs.readFileSync(path.join(__dirname, 'fixture.png'));
-	const data = await m()(buf);
-
-	t.true(data.length < buf.length);
+	const buffer = await fs.readFileSync(path.join(__dirname, 'fixture.png'));
+	const data = await imageminPngquant()(buffer);
+	t.true(data.length < buffer.length);
 	t.true(isPng(data));
 });
 
 test('support pngquant options', async t => {
-	const buf = await fs.readFileSync(path.join(__dirname, 'fixture.png'));
-	const data = await m({
+	const buffer = await fs.readFileSync(path.join(__dirname, 'fixture.png'));
+	const data = await imageminPngquant({
 		speed: 10,
-		quality: 100
-	})(buf);
-
+		quality: [0.8, 1]
+	})(buffer);
 	t.true(data.length > 30000);
 	t.true(isPng(data));
 });
 
 test('support streams', async t => {
-	const buf = await fs.readFileSync(path.join(__dirname, 'fixture.png'));
+	const buffer = await fs.readFileSync(path.join(__dirname, 'fixture.png'));
 	const stream = fs.createReadStream(path.join(__dirname, 'fixture.png'));
-	const data = await getStream.buffer(m()(stream));
-
-	t.true(data.length < buf.length);
+	const data = await getStream.buffer(imageminPngquant()(stream));
+	t.true(data.length < buffer.length);
 	t.true(isPng(data));
 });
 
 test('skip optimizing a non-PNG file', async t => {
-	const buf = await fs.readFileSync(__filename);
-	const data = await m()(buf);
-
-	t.is(data.length, buf.length);
+	const buffer = await fs.readFileSync(__filename);
+	const data = await imageminPngquant()(buffer);
+	t.is(data.length, buffer.length);
 });
 
 test('skip optimizing a fully optimized PNG', async t => {
-	const buf = await fs.readFileSync(path.join(__dirname, 'fixture-no-compress.png'));
-	const data = await m({quality: 100})(buf);
-	t.is(data.length, buf.length);
+	const buffer = await fs.readFileSync(path.join(__dirname, 'fixture-no-compress.png'));
+	const data = await imageminPngquant({quality: [0.8, 1]})(buffer);
+	t.is(data.length, buffer.length);
 	t.true(isPng(data));
 });
