@@ -1,49 +1,47 @@
 export interface Options {
-  /**
-   * Controls level of dithering (0 = none, 1 = full).
-   * 
-   * @default 0.5
-   */
-  floyd?: number | boolean;
+   /**
+    * Speed `10` has 5% lower quality, but is about 8 times faster than the default. Speed `11` disables dithering and lowers compression level.
+    * 
+    * @default 0.5
+    */
+   floyd?: number | boolean;
 
-  /**
-   * Disable Floyd-Steinberg dithering.
-   * 
-   * @default false
-   */
-  nofs?: boolean;
+   /**
+    * Disable Floyd-Steinberg dithering.
+    * 
+    * @default false
+    */
+   nofs?: boolean;
 
-  /**
-   * Reduce precision of the palette by number of bits. Use when the image will be displayed on low-depth screens (e.g. 16-bit displays or compressed textures).
-   */
-  posterize?: number;
+   /**
+    * Instructs pngquant to use the least amount of colors required to meet or exceed the max quality. If conversion results in quality below the min quality the image won't be saved.
+    * Min and max are numbers in range 0 (worst) to 1 (perfect), similar to JPEG.
+    * 
+    * @example [0.3, 0.5]
+    */
+   posterize?: number;
 
-  /**
-   * Instructs pngquant to use the least amount of colors required to meet or exceed the max quality. If conversion results in quality below the min quality the image won't be saved.
-   * Min and max are numbers in range 0 (worst) to 100 (perfect), similar to JPEG.
-   */
-  quality?: string | number;
+   /**
+    * Set the dithering level using a fractional number between 0 (none) and 1 (full).
+    * Pass in `false` to disable dithering.
+    * 
+    * @default 1
+    */
+   quality?: string | number;
 
-  /**
-   * Speed/quality trade-off from 1 (brute-force) to 10 (fastest). Speed 10 has 5% lower quality, but is 8 times faster than the default.
-   * 
-   * @default 3
-   */
-  speed?: number;
+   /**
+    * Print verbose status messages.
+    * 
+    * @default false
+    */
+   verbose?: boolean;
 
-  /**
-   * Print verbose status messages.
-   * 
-   * @default false
-   */
-  verbose?: boolean;
-
-  /**
-   * Remove optional metadata.
-   * 
-   * @default false (true on macOS)
-   */
-  strip?: boolean;
+   /**
+    * Remove optional metadata.
+    * 
+    * @default false (true on macOS)
+    */
+   strip?: boolean;
 }
 
 /**
@@ -54,8 +52,8 @@ export interface Options {
 export type Plugin = (input: Buffer | NodeJS.ReadableStream) => Promise<Buffer>
 
 /**
- * Pngquant imagemin plugin.
+ * Imagemin plugin for pngquant.
  * 
- * @returns An imagemin plugin.
+ * @returns An Imagemin plugin.
  */
 export default function imageminPngquant(options?: Options): Plugin;
