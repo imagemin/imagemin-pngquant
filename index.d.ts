@@ -2,6 +2,8 @@ export interface Options {
 	/**
 	 * Speed `10` has 5% lower quality, but is about 8 times faster than the default. Speed `11` disables dithering and lowers compression level.
 	 *
+	 * Values: `1` (brute-force) to `11` (fastest)
+	 *
 	 * @default 3
 	 */
 	speed?: number;
@@ -17,6 +19,8 @@ export interface Options {
 	 * Instructs pngquant to use the least amount of colors required to meet or exceed the max quality. If conversion results in quality below the min quality the image won't be saved.
 	 * Min and max are numbers in range 0 (worst) to 1 (perfect), similar to JPEG.
 	 *
+	 * Values: `Array<0...1, 0...1>`
+	 *
 	 * @example [0.3, 0.5]
 	 */
 	quality?: [number, number];
@@ -24,6 +28,8 @@ export interface Options {
 	/**
 	 * Set the dithering level using a fractional number between 0 (none) and 1 (full).
 	 * Pass in `false` to disable dithering.
+	 *
+	 * Values: 0...1
 	 *
 	 * @default 1
 	 */
