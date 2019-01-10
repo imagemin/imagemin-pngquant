@@ -19,7 +19,7 @@ export interface Options {
 	 *
 	 * @example [0.3, 0.5]
 	 */
-	quality?: number[];
+	quality?: [number, number];
 
 	/**
 	 * Set the dithering level using a fractional number between 0 (none) and 1 (full).
