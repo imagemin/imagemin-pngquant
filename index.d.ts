@@ -19,7 +19,7 @@ export interface Options {
 	 * Instructs pngquant to use the least amount of colors required to meet or exceed the max quality. If conversion results in quality below the min quality the image won't be saved.
 	 * Min and max are numbers in range 0 (worst) to 1 (perfect), similar to JPEG.
 	 *
-	 * Values: `Array<0...1, 0...1>`
+	 * Values: `[0...1, 0...1]`
 	 *
 	 * @example [0.3, 0.5]
 	 */
