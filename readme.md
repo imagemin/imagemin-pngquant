@@ -41,7 +41,7 @@ Type: `Object`
 ##### speed
 
 Type: `number`<br>
-Default: `3`<br>
+Default: `4`<br>
 Values: `1` (brute-force) to `11` (fastest)
 
 Speed `10` has 5% lower quality, but is about 8 times faster than the default. Speed `11` disables dithering and lowers compression level.
