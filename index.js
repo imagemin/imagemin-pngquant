@@ -54,14 +54,14 @@ const imageminPngquant = (options = {}) => input => {
 		args.push('--verbose');
 	}
 
-	const cp = execa(pngquant, args, {
+	const subprocess = execa(pngquant, args, {
 		encoding: null,
 		maxBuffer: Infinity,
 		input
 	});
 
-	const promise = cp
-		.then(result => result.stdout)
+	const promise = subprocess
+		.then(result => result.stdout) // eslint-disable-line promise/prefer-await-to-then
 		.catch(error => {
 			if (error.code === 99) {
 				return input;
@@ -71,10 +71,10 @@ const imageminPngquant = (options = {}) => input => {
 			throw error;
 		});
 
-	cp.stdout.then = promise.then.bind(promise);
-	cp.stdout.catch = promise.catch.bind(promise);
+	subprocess.stdout.then = promise.then.bind(promise); // eslint-disable-line promise/prefer-await-to-then
+	subprocess.stdout.catch = promise.catch.bind(promise);
 
-	return cp.stdout;
+	return subprocess.stdout;
 };
 
 module.exports = imageminPngquant;

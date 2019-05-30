@@ -30,13 +30,13 @@ const imageminPngquant = require('imagemin-pngquant');
 
 ## API
 
-### imageminPngquant([options])(input)
+### imageminPngquant(options?)(input)
 
-Returns a `Promise` for a `Buffer`.
+Returns `Promise<Buffer>`.
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### speed
 
@@ -67,7 +67,7 @@ Min and max are numbers in range 0 (worst) to 1 (perfect), similar to JPEG.
 
 ##### dithering
 
-Type: `number` `boolean`<br>
+Type: `number | boolean`<br>
 Default: `1` (full)<br>
 Values: `0...1`
 
@@ -90,11 +90,6 @@ Print verbose status messages.
 
 #### input
 
-Type: `Buffer` `Stream`
+Type: `Buffer | Stream`
 
 Buffer or stream to optimize.
-
-
-## License
-
-MIT © [Imagemin](https://github.com/imagemin)

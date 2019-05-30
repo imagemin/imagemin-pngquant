@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {expectType} from 'tsd-check';
+import {expectType} from 'tsd';
 import imageminPngquant from '.';
 
 const buffer = await fs.readFileSync(path.join(__dirname, 'fixture.png'));
