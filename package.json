@@ -1,6 +1,6 @@
 {
 	"name": "imagemin-pngquant",
-	"version": "7.0.0",
+	"version": "8.0.0",
 	"description": "Imagemin plugin for `pngquant`",
 	"license": "MIT",
 	"repository": "imagemin/imagemin-pngquant",
