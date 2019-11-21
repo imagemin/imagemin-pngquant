@@ -16,6 +16,18 @@ const imageminPngquant = (options = {}) => input => {
 		return Promise.resolve(input);
 	}
 
+	if (options.ignoreCompressed === true) {
+		let bitsPerPixel = input[24] & 0xff;
+		if ((input[25] & 0xff) === 2) {
+			bitsPerPixel *= 3;
+		} else if ((input[25] & 0xff) === 6) {
+			bitsPerPixel *= 4;
+		}
+		if (bitsPerPixel === 8) {
+			return Promise.resolve(input);
+		}
+	}
+
 	const args = ['-'];
 
 	if (typeof options.speed !== 'undefined') {
