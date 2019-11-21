@@ -93,3 +93,10 @@ Print verbose status messages.
 Type: `Buffer | Stream`
 
 Buffer or stream to optimize.
+
+##### ignoreCompressed
+
+Type: `boolean`<br>
+Default: `false`
+
+Prevent a PNG image from being compressed for a second time by calculating the bit depth.
