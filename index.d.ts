@@ -50,6 +50,13 @@ export interface Options {
 	@default false
 	*/
 	verbose?: boolean;
+
+	/**
+	 Prevent a PNG image from being compressed for a second time by calculating the bit depth.
+
+	 @default false
+	 */
+	ignoreCompressed?: boolean;
 }
 
 /**
