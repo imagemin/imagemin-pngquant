@@ -63,7 +63,14 @@ const imageminPngquant = (options = {}) => input => {
 	const promise = subprocess
 		.then(result => result.stdout) // eslint-disable-line promise/prefer-await-to-then
 		.catch(error => {
-			if (error.code === 99) {
+			/*
+			 Use error.exitCode to check for special condition running pngquant bin - output should just be input
+			 See details on handling of "99" code at https://pngquant.org/ (search for "status code 99")
+			 The error.code will be undefined in many cases depending on timing issues for the subprocess invocation
+			 The error.exitCode contains the numeric process exit code.
+			 For all other cases, throw the error
+			 */
+			if (error.exitCode === 99) {
 				return input;
 			}
 
