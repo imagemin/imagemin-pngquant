@@ -63,7 +63,9 @@ const imageminPngquant = (options = {}) => input => {
 	const promise = subprocess
 		.then(result => result.stdout) // eslint-disable-line promise/prefer-await-to-then
 		.catch(error => {
-			if (error.code === 99) {
+			// We use `error.exitCode` to check for a special condition when running the pngquant binary.
+			// See details on handling of "99" code at https://pngquant.org (search for "status code 99").
+			if (error.exitCode === 99) {
 				return input;
 			}
 
