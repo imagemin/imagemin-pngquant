@@ -24,10 +24,10 @@
 		"pngquant"
 	],
 	"dependencies": {
-		"execa": "^4.0.0",
+		"execa": "^5.0.0",
 		"is-png": "^2.0.0",
 		"is-stream": "^2.0.0",
-		"ow": "^0.17.0",
+		"ow": "^0.22.0",
 		"pngquant-bin": "^6.0.0"
 	},
 	"devDependencies": {

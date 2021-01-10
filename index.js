@@ -3,7 +3,7 @@ const execa = require('execa');
 const isPng = require('is-png');
 const isStream = require('is-stream');
 const pngquant = require('pngquant-bin');
-const ow = require('ow');
+const {default: ow} = require('ow');
 
 const imageminPngquant = (options = {}) => input => {
 	const isBuffer = Buffer.isBuffer(input);
