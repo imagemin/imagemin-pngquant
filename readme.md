@@ -1,4 +1,4 @@
-# imagemin-pngquant [![Build Status](https://travis-ci.org/imagemin/imagemin-pngquant.svg?branch=master)](https://travis-ci.org/imagemin/imagemin-pngquant)
+# imagemin-pngquant ![GitHub Actions Status](https://github.com/imagemin/imagemin-pngquant/workflows/test/badge.svg?branch=master)
 
 > [Imagemin](https://github.com/imagemin/imagemin) plugin for [`pngquant`](https://github.com/kornelski/pngquant)
 
