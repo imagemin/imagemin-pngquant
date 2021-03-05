@@ -25,7 +25,10 @@ const imageminPngquant = (options = {}) => input => {
 
 	if (typeof options.strip !== 'undefined') {
 		ow(options.strip, ow.boolean);
-		args.push('--strip');
+
+		if (options.strip) {
+			args.push('--strip');
+		}
 	}
 
 	if (typeof options.quality !== 'undefined') {
