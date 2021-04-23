@@ -32,7 +32,7 @@ const imageminPngquant = (options = {}) => input => {
 	}
 
 	if (typeof options.quality !== 'undefined') {
-		ow(options.quality, ow.array.length(2).ofType(ow.number.inRange(0, 1)));
+		ow(options.quality.map(q => Number.parseFloat(q)), ow.array.length(2).ofType(ow.number.inRange(0, 1)));
 		const [min, max] = options.quality;
 		args.push('--quality', `${Math.round(min * 100)}-${Math.round(max * 100)}`);
 	}
