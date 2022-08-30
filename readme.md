@@ -89,6 +89,13 @@ Default: `false`
 
 Print verbose status messages.
 
+##### iebug
+
+Type: `boolean`<br>
+Default: `false`
+
+Will make almost-opaque pixels fully opaque and will reduce amount of semi-transparent colors in old IE.
+
 #### input
 
 Type: `Buffer | Stream`
