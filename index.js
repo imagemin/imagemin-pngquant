@@ -57,6 +57,11 @@ const imageminPngquant = (options = {}) => input => {
 		args.push('--verbose');
 	}
 
+	if (typeof options.iebug !== 'undefined') {
+		ow(options.iebug, ow.boolean);
+		args.push('--iebug');
+	}
+
 	const subprocess = execa(pngquant, args, {
 		encoding: null,
 		maxBuffer: Infinity,
