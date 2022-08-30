@@ -50,6 +50,13 @@ export interface Options {
 	@default false
 	*/
 	verbose?: boolean;
+
+	/**
+	Will make almost-opaque pixels fully opaque and will reduce amount of semi-transparent colors in old IE.
+
+	@default false
+	*/
+	iebug?: boolean;
 }
 
 /**
