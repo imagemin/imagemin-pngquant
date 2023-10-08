@@ -22,8 +22,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm test
+    - name: Install Prerequisites
+      run: sudo apt-get -y install libpng-dev libimagequant-dev
+    - name: Npm Install
+      run: npm install
+    - name: Run Test
+      run: npm test
       env:
         CI: true
 
