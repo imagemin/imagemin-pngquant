@@ -1,4 +1,4 @@
-export interface Options {
+export interface Options { // eslint-disable-line @typescript-eslint/consistent-type-definitions
 	/**
 	Speed `10` has 5% lower quality, but is about 8 times faster than the default. Speed `11` disables dithering and lowers compression level.
 
