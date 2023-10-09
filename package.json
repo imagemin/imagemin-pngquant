@@ -1,9 +1,9 @@
 {
-	"name": "imagemin-pngquant",
+	"name": "@localnerve/imagemin-pngquant",
 	"version": "10.0.1",
 	"description": "Imagemin plugin for `pngquant`",
 	"license": "MIT",
-	"repository": "imagemin/imagemin-pngquant",
+	"repository": "localnerve/imagemin-pngquant",
 	"type": "module",
 	"exports": {
 		"types": "./index.d.ts",
@@ -12,6 +12,11 @@
 	"engines": {
 		"node": ">=16"
 	},
+	"maintainers": [{
+		"name" : "Alex Grant",
+		"email" : "alex@localnerve.com",
+		"url" : "https://www.localnerve.com"
+	}],
 	"scripts": {
 		"test": "xo && npm run test:cover && tsd",
 		"test:cover": "c8 --check-coverage --statements 90 ava"

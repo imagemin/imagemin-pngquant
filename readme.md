@@ -1,9 +1,13 @@
 # imagemin-pngquant 
 
-[![test](https://github.com/imagemin/imagemin-pngquant/actions/workflows/test.yml/badge.svg)](https://github.com/imagemin/imagemin-pngquant/actions/workflows/test.yml)
+[![test](https://github.com/localnerve/imagemin-pngquant/actions/workflows/test.yml/badge.svg)](https://github.com/localnerve/imagemin-pngquant/actions/workflows/test.yml)
 
 > [Imagemin](https://github.com/imagemin/imagemin) plugin for [`pngquant`](https://github.com/kornelski/pngquant)
 
+> A maintained, updated fork of [imagemin-pngquant](https://github.com/imagemin/imagemin-pngquant)   
+>   Node 16+  
+>   ESM  
+>   Security and dependency updates  
 
 ## Install
 
