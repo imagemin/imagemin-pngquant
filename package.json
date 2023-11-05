@@ -1,6 +1,6 @@
 {
 	"name": "@localnerve/imagemin-pngquant",
-	"version": "10.0.2",
+	"version": "10.0.3",
 	"description": "Imagemin plugin for `pngquant`",
 	"license": "MIT",
 	"repository": "localnerve/imagemin-pngquant",

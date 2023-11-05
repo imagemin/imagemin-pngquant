@@ -20,6 +20,11 @@ $ npm install imagemin-pngquant
 sudo apt-get -y install libpng-dev libimagequant-dev
 ```
 
+> **Macosx** machines must have the following package prior to install: `libimagequant`
+```
+brew install libimagequant
+```
+
 ## Usage
 
 ```js
