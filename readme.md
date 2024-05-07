@@ -1,4 +1,4 @@
-# imagemin-pngquant ![GitHub Actions Status](https://github.com/imagemin/imagemin-pngquant/workflows/test/badge.svg?branch=master)
+# imagemin-pngquant 
 
 > [Imagemin](https://github.com/imagemin/imagemin) plugin for [`pngquant`](https://github.com/kornelski/pngquant)
 
@@ -8,7 +8,11 @@
 ```
 $ npm install imagemin-pngquant
 ```
-
+### Prerequisites
+> **Linux** machines must have the following packages prior to install: `libpng-dev libimagequant-dev`  
+```
+sudo apt-get -y install libpng-dev libimagequant-dev
+```
 
 ## Usage
 
