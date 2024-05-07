@@ -1,7 +1,5 @@
 # imagemin-pngquant 
 
-[![test](https://github.com/imagemin/imagemin-pngquant/actions/workflows/test.yml/badge.svg)](https://github.com/imagemin/imagemin-pngquant/actions/workflows/test.yml)
-
 > [Imagemin](https://github.com/imagemin/imagemin) plugin for [`pngquant`](https://github.com/kornelski/pngquant)
 
 
