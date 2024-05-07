@@ -43,10 +43,5 @@
 		"get-stream": "^6.0.1",
 		"tsd": "^0.29.0",
 		"xo": "^0.56.0"
-	},
-	"overrides": {
-    "download": "npm:@xhmikosr/downloader",
-    "bin-wrapper": "npm:@xhmikosr/bin-wrapper",
-		"bin-build": "npm:@localnerve/bin-build"
 	}
 }
