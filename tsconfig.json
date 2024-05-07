@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "strictNullChecks": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
-  }
-}

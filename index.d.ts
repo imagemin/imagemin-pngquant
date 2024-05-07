@@ -43,19 +43,12 @@ export interface Options { // eslint-disable-line @typescript-eslint/consistent-
 	Use this when image will be output on low-depth displays (e.g. 16-bit RGB). pngquant will make almost-opaque pixels fully opaque and will reduce amount of semi-transparent colors.
 	*/
 	posterize?: number;
-
-	/**
-	Print verbose status messages.
-
-	@default false
-	*/
-	verbose?: boolean;
 }
 
 /**
-Buffer or stream to optimize.
+Image data to optimize.
 */
-export type Plugin = (input: Buffer | NodeJS.ReadableStream) => Promise<Buffer>;
+export type Plugin = (input: Uint8Array) => Promise<Uint8Array>;
 
 /**
 Imagemin plugin for pngquant.
