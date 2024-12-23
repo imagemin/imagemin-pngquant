@@ -1,6 +1,6 @@
 {
 	"name": "imagemin-pngquant",
-	"version": "10.0.0",
+	"version": "11.0.0",
 	"description": "Imagemin plugin for `pngquant`",
 	"license": "MIT",
 	"repository": "imagemin/imagemin-pngquant",
@@ -36,6 +36,9 @@
 		"ow": "^2.0.0",
 		"pngquant-bin": "^9.0.0",
 		"uint8array-extras": "^1.1.0"
+	},
+	"peerDependencies": {
+		"imagemin": "^8.0.1"
 	},
 	"devDependencies": {
 		"@types/node": "^20.12.10",

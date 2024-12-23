@@ -10,7 +10,7 @@ npm install imagemin-pngquant
 
 ### Prerequisites
 
-> **Linux** machines must have the following packages prior to install: `libpng-dev libimagequant-dev`  
+> **Linux** machines must have the following packages prior to install: `libpng-dev libimagequant-dev`
 
 ```sh
 sudo apt-get -y install libpng-dev libimagequant-dev
@@ -20,7 +20,7 @@ sudo apt-get -y install libpng-dev libimagequant-dev
 
 ```js
 import imagemin from 'imagemin';
-import imageminPngquant from 'imagemin-pngquant';
+import { imageminPngquant } from 'imagemin-pngquant';
 
 await imagemin(['images/*.png'], {
 	destination: 'build/images',
